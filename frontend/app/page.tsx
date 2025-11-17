@@ -42,7 +42,6 @@ const App: React.FC = () => {
   }, []); // Empty dependency array means this effect runs once on mount
 
   return (
-<<<<<<< HEAD
     // We use a main tag to wrap the sections of the page
     <main>
       {/* Hero Video Section 
@@ -138,12 +137,6 @@ const App: React.FC = () => {
       {/* Render the Contact Overlay (remains at the end) */}
       <ContactOverlay isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </main>
-=======
-   <>
-   <div> Hi this is frontend 
-   </div>
-   </>
->>>>>>> 4ca0af4e2890a980016df793e0b522da21d068b6
   );
 };
 
