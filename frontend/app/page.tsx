@@ -1,18 +1,43 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ContactOverlay } from '@/components/Contact';
+import { AboutSection } from '@/components/WhoAreWe';
+
+/**
+ * Set the video URL.
+ * Since your video is in the /public folder at the root of your frontend project
+ * (e.g., /public/bg-video.mp4), you can access it directly with "/bg-video.mp4".
+ */
 const VIDEO_URL = "/bg-video.mp4";
 const App: React.FC = () => {
-  // Add state to manage the contact overlay visibility
   const [isContactOpen, setIsContactOpen] = useState(false);
+  
+  // Add state to track scroll position
+  const [scrollY, setScrollY] = useState(0);
+
+  // Add scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    // Set listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up listener
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []); // Empty dependency array means this effect runs once on mount
 
   return (
-    // We use a React Fragment <> to allow the overlay to be a sibling
-    // to the main page wrapper.
-    <>
-      {/* Main container: Ensures full screen height and sets text color. */}
-      {/* overflow-hidden clips the video edges. */}
-      <div className="relative min-h-screen w-full overflow-hidden font-sans text-white">
+<<<<<<< HEAD
+    // We use a main tag to wrap the sections of the page
+    <main>
+      {/* Hero Video Section 
+        This is the original component, now wrapped in a <section>
+      */}
+      <section className="relative min-h-screen w-full overflow-hidden font-sans text-white">
         
         {/* Video Background Section */}
         <div className="absolute inset-0 z-[-1]">
@@ -77,7 +102,11 @@ const App: React.FC = () => {
           </nav>
 
           {/* Main Content (Bottom Left) */}
-          <main className="mb-10">
+          <div 
+            className="mb-10"
+            // Apply parallax to the hero text as well
+            style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+          >
             <h2 className="text-5xl font-bold md:text-7xl">Born to Create</h2>
             <p className="mt-4 text-lg font-medium tracking-wide md:text-xl">
               Brand.Desgin.Developement
@@ -86,13 +115,24 @@ const App: React.FC = () => {
               A Bootstrap startup for photograhy Studio Name is the best in the
               area, cinematic, wedding
             </p>
-          </main>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Render the Contact Overlay */}
+      {/* New "About" Section
+        Render the new component right after the first section
+      */}
+      <AboutSection scrollY={scrollY} />
+
+      {/* Render the Contact Overlay (remains at the end) */}
       <ContactOverlay isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
-    </>
+    </main>
+=======
+   <>
+   <div> Hi this is frontend 
+   </div>
+   </>
+>>>>>>> 4ca0af4e2890a980016df793e0b522da21d068b6
   );
 };
 
