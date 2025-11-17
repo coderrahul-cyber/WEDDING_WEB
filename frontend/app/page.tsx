@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { ContactOverlay } from '@/components/Contact';
+import { AboutSection } from '@/components/WhoAreWe';
 
 /**
  * Set the video URL.
@@ -56,10 +57,10 @@ const App: React.FC = () => {
           <nav className="flex w-full items-start justify-between">
             {/* Logo */}
             <div>
-              <h1 className="text-4xl font-extrabold leading-none tracking-tight md:text-5xl">
+              <h1 className="text-4xl font-primary leading-none tracking-tight md:text-9xl">
                 STUDIO
                 <br />
-                NAME
+                NAME<sup className='text-xs md:text-xs  border-2 pr-1 rounded-full font-mono  ml-1'>TM</sup>
               </h1>
             </div>
             
@@ -95,17 +96,18 @@ const App: React.FC = () => {
 
           {/* Main Content (Bottom Left) */}
           <main className="mb-10">
-            <h2 className="text-5xl font-bold md:text-7xl">Born to Create</h2>
-            <p className="mt-4 text-lg font-medium tracking-wide md:text-xl">
+            <h2 className="text-5xl font-primary md:text-7xl">Born to Create</h2>
+            <p className="mt-4 text-xl font-primary-medium tracking-wide md:text-2xl">
               Brand.Desgin.Developement
             </p>
-            <p className="mt-3 max-w-md text-base text-neutral-300">
+            <p className="md:mt-3 max-w-md  font-secondary  text-neutral-300 text-lg md:text-xl">
               A Bootstrap startup for photograhy Studio Name is the best in the
               area, cinematic, wedding
             </p>
           </main>
         </div>
       </div>
+          <AboutSection scrollY={10} />
 
       {/* Render the Contact Overlay */}
       <ContactOverlay isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
