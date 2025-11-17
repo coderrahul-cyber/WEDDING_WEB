@@ -8,8 +8,8 @@
    Make sure you have [Node.js](https://nodejs.org/) installed. Then run:
    ```bash  
    cd frontend
-```
-3. **Install The pnpm **:
+   ```
+3. **Install The pnpm**:
     ```bash
     npm install -g pnpm
     ```
