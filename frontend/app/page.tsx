@@ -1,24 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { ContactOverlay } from '@/components/Contact';
-
-/**
- * Set the video URL.
- * Since your video is in the /public folder at the root of your frontend project
- * (e.g., /public/bg-video.mp4), you can access it directly with "/bg-video.mp4".
- */
 const VIDEO_URL = "/bg-video.mp4";
-
-
-
-
-// ----------------------------------------------------------------------
-// Main Application Component (Updated)
-// ----------------------------------------------------------------------
-
-/**
- * Main application component representing the studio landing page.
- */
 const App: React.FC = () => {
   // Add state to manage the contact overlay visibility
   const [isContactOpen, setIsContactOpen] = useState(false);
