@@ -1,0 +1,112 @@
+/* Add this to your global stylesheet (e.g., globals.css) */
+
+/* Stage setup */
+.stage {
+  width: 100%;
+  height: 100vh;
+  /* Or a fixed height if you prefer */
+  overflow: hidden;
+  position: relative;
+  background: #f6f7f9;
+  /* Perspective is crucial for 3D */
+  perspective: 1600px;
+  -webkit-perspective: 1600px;
+  touch-action: none; /* Disable native touch gestures */
+  cursor: grab;
+}
+
+.stage.dragging {
+  cursor: grabbing;
+}
+
+/* Background canvas */
+#bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Cards container */
+.cards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+  z-index: 2;
+  /* This enables the 3D transforms */
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* Individual card */
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px; /* Must match JS CARD_W approx. */
+  height: 400px; /* Must match JS CARD_H approx. */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+  background: #fff;
+  /*
+    Set left edge as transform origin for correct 3D rotation.
+    -50% on Y is to align with the top: 50% on .cards
+  */
+  transform-origin: 0% 50%;
+  -webkit-transform-origin: 0% 50%;
+  /*
+    This transform is a placeholder, JS will override it.
+    The -50% centers it horizontally on its absolute position.
+  */
+  transform: translate(-50%, -50%);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Card media (image or video) */
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* Prevent media from capturing drag events */
+}
+
+/* Loader styles */
+#loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f6f7f9;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+.loader--hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader__spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #555;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
