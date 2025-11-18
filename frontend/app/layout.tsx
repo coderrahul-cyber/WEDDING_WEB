@@ -14,13 +14,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
-
-export const metadata: Metadata = {
-  title: "XYZ",
-  description: "xyz",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{

@@ -1,7 +1,8 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ContactOverlay } from '@/components/Contact';
-import { AboutSection } from '@/components/WhoAreWe';
+import Link from 'next/link';
+import WhoAreWe from '@/components/WhoAreWe';
 
 /**
  * Set the video URL.
@@ -67,12 +68,12 @@ const App: React.FC = () => {
             {/* Nav Links */}
             <ul className="flex items-center gap-6 md:gap-10">
               <li>
-                <a 
-                  href="#" 
+                <Link
+                  href="/work" 
                   className="text-sm font-semibold tracking-wider transition-opacity hover:opacity-75 md:text-base"
                 >
                   WORK
-                </a>
+                </Link>
               </li>
               <li>
                 {/* Updated this to a button to open the overlay */}
@@ -107,10 +108,11 @@ const App: React.FC = () => {
           </main>
         </div>
       </div>
-          <AboutSection scrollY={10} />
+          <WhoAreWe />
 
       {/* Render the Contact Overlay */}
       <ContactOverlay isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+        <div className='min-h-screen'></div>
     </>
   );
 };

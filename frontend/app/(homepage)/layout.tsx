@@ -1,6 +1,8 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import   "../";
+import "../globals.css";
+import {  neuBlack, neuMedium, neuton } from "@/public/assets/fonts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "THE WEDDING PHOTOGRAPHY",
-  description: "A well known wedding photography service",
+  title: "XYZ-Studio",
+  description: "THE BEST PHOTOGRAPHY STUDIO IN THE AREA",
 };
 
 export default function RootLayout({
@@ -23,10 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${neuBlack.variable} ${neuMedium.variable} ${neuton.variable}`}>
+      <body className="antialiased">
         {children}
       </body>
     </html>
