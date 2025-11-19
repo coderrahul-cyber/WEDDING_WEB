@@ -13,8 +13,8 @@
   --font-primary: var(--font-neu);
   --font-secondary: var(--font-neuton);
   --font-primary-medium: var(--font-neu-medium);
-  --color-bg:#FEF0D5;
-  --color-text:#60210F;
+  --color-bg:#FDF6E3;
+  --color-text:#422006;
 }
 
 @media (prefers-color-scheme: dark) {

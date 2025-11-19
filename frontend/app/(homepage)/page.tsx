@@ -49,13 +49,13 @@ const App: React.FC = () => {
 
         {/* Page Content Wrapper */}
         {/* This wrapper uses flex to position the header (top) and main (bottom) */}
-        <div className="relative z-10 flex min-h-screen flex-col justify-between p-10 md:p-16">
-          
+        <div className="relative z-10 flex min-h-screen flex-col justify-between p-5 md:p-16">
+        
           {/* Header Navigation */}
           <nav className="flex w-full items-start justify-between">
             {/* Logo */}
             <div>
-              <h1 className="text-4xl font-primary leading-none tracking-tight md:text-9xl">
+              <h1 className="text-3xl font-primary leading-none tracking-tight md:text-9xl">
                 STUDIO
                 <br />
                 NAME
