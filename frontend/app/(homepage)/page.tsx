@@ -1,7 +1,11 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ContactOverlay } from '@/components/Contact';
-import { AboutSection } from '@/components/WhoAreWe';
+import Link from 'next/link';
+import WhoAreWe from '@/components/WhoAreWe';
+import Footer from '@/components/Footer';
+
+
 
 /**
  * Set the video URL.
@@ -9,7 +13,6 @@ import { AboutSection } from '@/components/WhoAreWe';
  * (e.g., /public/bg-video.mp4), you can access it directly with "/bg-video.mp4".
  */
 const VIDEO_URL = "/bg-video.mp4";
-
 
 
 
@@ -21,33 +24,16 @@ const VIDEO_URL = "/bg-video.mp4";
  * Main application component representing the studio landing page.
  */
 const App: React.FC = () => {
+  // Add state to manage the contact overlay visibility
   const [isContactOpen, setIsContactOpen] = useState(false);
-  
-  // Add state to track scroll position
-  const [scrollY, setScrollY] = useState(0);
-
-  // Add scroll event listener
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    // Set listener
-    window.addEventListener('scroll', handleScroll);
-
-    // Clean up listener
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []); // Empty dependency array means this effect runs once on mount
 
   return (
-    // We use a main tag to wrap the sections of the page
-    <main>
-      {/* Hero Video Section 
-        This is the original component, now wrapped in a <section>
-      */}
-      <section className="relative min-h-screen w-full overflow-hidden font-sans text-white">
+    // We use a React Fragment <> to allow the overlay to be a sibling
+    // to the main page wrapper.
+    <>
+      {/* Main container: Ensures full screen height and sets text color. */}
+      {/* overflow-hidden clips the video edges. */}
+      <div className="relative min-h-screen w-full overflow-hidden font-sans text-white">
         
         {/* Video Background Section */}
         <div className="absolute inset-0 z-[-1]">
@@ -74,22 +60,22 @@ const App: React.FC = () => {
           <nav className="flex w-full items-start justify-between">
             {/* Logo */}
             <div>
-              <h1 className="text-4xl font-extrabold leading-none tracking-tight md:text-5xl">
+              <h1 className="text-4xl font-primary leading-none tracking-tight md:text-9xl">
                 STUDIO
                 <br />
-                NAME
+                NAME<sup className='text-xs md:text-xs  border-2 pr-1 rounded-full font-mono  ml-1'>TM</sup>
               </h1>
             </div>
             
             {/* Nav Links */}
             <ul className="flex items-center gap-6 md:gap-10">
               <li>
-                <a 
-                  href="#" 
+                <Link
+                  href="/work" 
                   className="text-sm font-semibold tracking-wider transition-opacity hover:opacity-75 md:text-base"
                 >
                   WORK
-                </a>
+                </Link>
               </li>
               <li>
                 {/* Updated this to a button to open the overlay */}
@@ -112,31 +98,25 @@ const App: React.FC = () => {
           </nav>
 
           {/* Main Content (Bottom Left) */}
-          <div 
-            className="mb-10"
-            // Apply parallax to the hero text as well
-            style={{ transform: `translateY(${scrollY * 0.3}px)` }}
-          >
-            <h2 className="text-5xl font-bold md:text-7xl">Born to Create</h2>
-            <p className="mt-4 text-lg font-medium tracking-wide md:text-xl">
-              Brand.Desgin.Developement
+          <main className="mb-10">
+            <h2 className="text-5xl font-primary md:text-7xl">Born to Create</h2>
+            <p className="mt-4 text-xl font-primary-medium tracking-wide md:text-2xl">
+              Brand.Design.Development
             </p>
-            <p className="mt-3 max-w-md text-base text-neutral-300">
-              A Bootstrap startup for photograhy Studio Name is the best in the
+            <p className="md:mt-3 max-w-md  font-secondary  text-neutral-300 text-lg md:text-xl">
+              A Bootstrap startup for photography Studio Name is the best in the
               area, cinematic, wedding
             </p>
-          </div>
+          </main>
         </div>
-      </section>
+      </div>
+          <WhoAreWe />
+          <Footer />
 
-      {/* New "About" Section
-        Render the new component right after the first section
-      */}
-      <AboutSection scrollY={scrollY} />
-
-      {/* Render the Contact Overlay (remains at the end) */}
+      {/* Render the Contact Overlay */}
       <ContactOverlay isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
-    </main>
+      
+    </>
   );
 };
 

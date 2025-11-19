@@ -1,0 +1,124 @@
+/* Add this to your global stylesheet (e.g., globals.css) */
+
+/* Stage setup */
+.stage {
+  width: 100%;
+  height: 100vh;
+  /* Or a fixed height if you prefer */
+  overflow: hidden;
+  position: relative;
+  background: #f6f7f9;
+  /* Perspective is crucial for 3D */
+  perspective: 1600px;
+  -webkit-perspective: 1600px;
+  touch-action: none; /* Disable native touch gestures */
+  cursor: grab;
+}
+
+.stage.dragging {
+  cursor: grabbing;
+}
+
+/* Background canvas */
+#bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Cards container */
+.cards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+  z-index: 2;
+  /* This enables the 3D transforms */
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* Individual card */
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  /* DESKTOP DEFAULT */
+  width: 300px; 
+  height: 400px;
+  
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  background: #111; /* Dark mode bg */
+  transform-origin: 0% 50%;
+  -webkit-transform-origin: 0% 50%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}
+/* MOBILE OVERRIDE */
+@media (max-width: 768px) {
+  /* Individual card */
+.card {
+  /* ... existing styles ... */
+  
+  /* Keep Y-axis centering, but remove X-axis centering.
+     We must keep Y-axis centering because the top: 50% relies on it. */
+  transform: translate(0, -50%); 
+  
+  /* ... user-select: none; */
+}
+  
+  /* Adjust perspective for smaller screens */
+  .stage {
+    perspective: 1000px; /* Reduce perspective depth slightly */
+  }
+}
+
+/* Card media (image or video) */
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* Prevent media from capturing drag events */
+}
+
+/* Loader styles */
+#loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f6f7f9;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+.loader--hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader__spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #555;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
