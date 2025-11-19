@@ -1,178 +1,115 @@
-// ----------------------------------------------------------------------
-// Contact Overlay Component (No Changes)
-// ----------------------------------------------------------------------
+import React, { useEffect } from 'react';
 
 interface ContactOverlayProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-/**
- * A full-screen overlay for contact information, inspired by futurethree.studio
- */
 export const ContactOverlay: React.FC<ContactOverlayProps> = ({ isOpen, onClose }) => {
-// ... (The entire ContactOverlay component code is unchanged) ...
+  // Lock body scroll when open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isOpen]);
+
   return (
     <div
       className={`
-        fixed inset-0 z-50
-        flex flex-col items-center justify-center
+        fixed inset-0 z-50 
+        bg-black/70 backdrop-blur-sm
         transition-all duration-500 ease-in-out
         ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
       `}
+      onClick={onClose}
     >
-      {/* Background Overlay */}
-      <div
-        className="absolute inset-0 bg-black/70"
-        onClick={onClose} // Close the overlay when clicking the background
-      />
-
-      {/* Content Box */}
-      {/* We use stopPropagation to prevent clicks inside the box from closing the overlay */}
-      <div
-        className={`
-          relative z-10 w-full max-w-6xl rounded-lg bg-white p-10 text-black shadow-2xl
-          transition-all duration-500 ease-in-out md:p-14
-          ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}
-        `}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Top Section */}
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-start">
-          {/* "Let's Talk" */}
-          <h2 className="text-6xl font-bold md:text-7xl">Let's Talk</h2>
+      {/* 1. SCROLL CONTAINER: Allows scrolling if content is too tall on mobile */}
+      <div className="h-full w-full overflow-y-auto py-4 sm:py-10">
+        
+        {/* 2. CENTERING WRAPPER */}
+        <div className="flex min-h-full items-center justify-center px-4">
           
-          {/* Info */}
-          <div className="flex-shrink-0 text-left md:text-right">
-            <a
-              href="mailto:hello@futurethree.studio"
-              className="mb-1 block text-lg font-medium underline transition-opacity hover:opacity-70 md:text-xl"
+          {/* 3. CONTENT BOX (White Background, Black Text) */}
+          <div
+            className={`
+              relative w-full max-w-5xl rounded-lg bg-white p-6 shadow-2xl transition-all duration-500 text-black md:p-14
+              ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}
+            `}
+            onClick={(e) => e.stopPropagation()}
+          >
+            
+            {/* CLOSE BUTTON (Standard 'X' top right) */}
+            <button 
+              onClick={onClose}
+              className="absolute top-4 right-4 p-2 text-black md:hidden"
             >
-              hello@futurethree.studio
-            </a>
-            <a
-              href="tel:+4915758518742"
-              className="block text-lg font-medium underline transition-opacity hover:opacity-70 md:text-xl"
-            >
-              +49 157 58518742
-            </a>
-          </div>
+              ✕ Close
+            </button>
 
-          {/* Socials */}
-          <div className="flex-shrink-0 text-left md:text-right">
-            {/* Language switch (placeholder) */}
-            <div className="mb-2 text-xs uppercase text-gray-500">
-              <span className="font-bold text-black">ENGLISH</span> / <span>DEUTSCH</span>
+            {/* --- TOP SECTION --- */}
+            <div className="flex flex-col gap-6 md:flex-row md:justify-between border-b border-gray-200 pb-6">
+              <h2 className="font-primary text-4xl font-bold md:text-7xl">Let's Talk</h2>
+              
+              <div className="flex flex-col text-left md:text-right">
+                <a href="mailto:hello@xyz.com" className="font-secondary text-lg underline md:text-xl text-neutral-600">hello@xyz.com</a>
+                <a href="tel:+91000000000" className="font-secondary text-lg underline md:text-xl text-neutral-600">+91 000 000 000</a>
+              </div>
             </div>
-            {/* Social Links */}
-            <div className="flex gap-4 md:justify-end">
-              <a href="#" className="font-medium underline transition-opacity hover:opacity-70">IG</a>
-              <a href="#" className="font-medium underline transition-opacity hover:opacity-70">LI</a>
-              <a href="#" className="font-medium underline transition-opacity hover:opacity-70">YT</a>
-            </div>
+            
+            {/* --- FORM SECTION --- */}
+            <form className="pt-8">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+                
+                {/* Left Column (Inputs) */}
+                <div className="flex flex-col gap-4 md:gap-6">
+                  <div>
+                    <label className="mb-2 block text-xs font-bold uppercase text-gray-500">Your Name</label>
+                    <input type="text" className="w-full rounded bg-gray-100 p-3 focus:ring-2 focus:ring-black outline-none" />
+                  </div>
+                  <div>
+                    <label className="mb-2 block text-xs font-bold uppercase text-gray-500">Company Name</label>
+                    <input type="text" className="w-full rounded bg-gray-100 p-3 focus:ring-2 focus:ring-black outline-none" />
+                  </div>
+                  <div>
+                    <label className="mb-2 block text-xs font-bold uppercase text-gray-500">Email Address</label>
+                    <input type="email" className="w-full rounded bg-gray-100 p-3 focus:ring-2 focus:ring-black outline-none" />
+                  </div>
+                </div>
+
+                {/* Right Column (Textarea & Submit) */}
+                <div className="flex flex-col gap-4">
+                  <div className="flex-grow">
+                     <label className="mb-2 block text-xs font-bold uppercase text-gray-500">Your Message</label>
+                     <textarea rows={8} className="w-full rounded bg-gray-100 p-3 focus:ring-2 focus:ring-black outline-none resize-none h-48 md:h-full"></textarea>
+                  </div>
+                  <button className="bg-black text-white py-3 px-6 font-bold uppercase text-xs tracking-widest hover:opacity-80">
+                    Submit
+                  </button>
+                </div>
+
+              </div>
+            </form>
+
           </div>
         </div>
-
-        {/* Divider */}
-        <hr className="my-8 border-gray-300 md:my-12" />
-
-        {/* Form Section */}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            // Handle form submission logic here
-            console.log("Form submitted!");
-          }}
-        >
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-            {/* Left Column */}
-            <div className="flex flex-col gap-6">
-              {/* Your Name */}
-              <div>
-                <label
-                  htmlFor="name"
-                  className="mb-2 block text-xs font-semibold uppercase tracking-wider text-gray-600"
-                >
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full rounded-md border border-gray-200 bg-gray-100 p-3 focus:outline-none focus:ring-2 focus:ring-black"
-                />
-              </div>
-              {/* Company Name */}
-              <div>
-                <label
-                  htmlFor="company"
-                  className="mb-2 block text-xs font-semibold uppercase tracking-wider text-gray-600"
-                >
-                  Company Name
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  className="w-full rounded-md border border-gray-200 bg-gray-100 p-3 focus:outline-none focus:ring-2 focus:ring-black"
-                />
-              </div>
-              {/* Email Address */}
-              <div>
-                <label
-                  htmlFor="email"
-                  className="mb-2 block text-xs font-semibold uppercase tracking-wider text-gray-600"
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full rounded-md border border-gray-200 bg-gray-100 p-3 focus:outline-none focus:ring-2 focus:ring-black"
-                />
-              </div>
-            </div>
-
-            {/* Right Column */}
-            <div className="flex flex-col">
-              {/* Your Message */}
-              <div className="flex-grow">
-                <label
-                  htmlFor="message"
-                  className="mb-2 block text-xs font-semibold uppercase tracking-wider text-gray-600"
-                >
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={8}
-                  className="w-full flex-grow resize-none rounded-md border border-gray-200 bg-gray-100 p-3 focus:outline-none focus:ring-2 focus:ring-black"
-                ></textarea>
-              </div>
-              {/* Submit Button */}
-              <div className="mt-4 flex justify-end">
-                <button
-                  type="submit"
-                  className="rounded-sm bg-black px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-opacity hover:opacity-80"
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
       </div>
-
-      {/* Close Button (Bottom Center) */}
-      <button
+      
+      {/* Footer Close Button (Outside the modal box) */}
+      <button 
         onClick={onClose}
         className={`
-          relative z-10 mt-6
-          text-lg font-bold text-white
+          relative z-10 mt-6 
+          text-lg font-bold text-white 
           transition-all duration-500 ease-in-out
           ${isOpen ? 'opacity-100' : 'opacity-0'}
         `}
       >
         Close
       </button>
+
     </div>
   );
 };

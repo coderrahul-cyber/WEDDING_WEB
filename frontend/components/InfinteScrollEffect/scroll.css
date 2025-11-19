@@ -47,25 +47,37 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 300px; /* Must match JS CARD_W approx. */
-  height: 400px; /* Must match JS CARD_H approx. */
+  
+  /* DESKTOP DEFAULT */
+  width: 300px; 
+  height: 400px;
+  
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
-  background: #fff;
-  /*
-    Set left edge as transform origin for correct 3D rotation.
-    -50% on Y is to align with the top: 50% on .cards
-  */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  background: #111; /* Dark mode bg */
   transform-origin: 0% 50%;
   -webkit-transform-origin: 0% 50%;
-  /*
-    This transform is a placeholder, JS will override it.
-    The -50% centers it horizontally on its absolute position.
-  */
   transform: translate(-50%, -50%);
   user-select: none;
-  -webkit-user-select: none;
+}
+/* MOBILE OVERRIDE */
+@media (max-width: 768px) {
+  /* Individual card */
+.card {
+  /* ... existing styles ... */
+  
+  /* Keep Y-axis centering, but remove X-axis centering.
+     We must keep Y-axis centering because the top: 50% relies on it. */
+  transform: translate(0, -50%); 
+  
+  /* ... user-select: none; */
+}
+  
+  /* Adjust perspective for smaller screens */
+  .stage {
+    perspective: 1000px; /* Reduce perspective depth slightly */
+  }
 }
 
 /* Card media (image or video) */

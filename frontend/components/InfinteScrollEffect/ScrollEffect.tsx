@@ -401,13 +401,20 @@ export default function InfiniteCarousel(): JSX.Element {
     return { norm, absNorm, invNorm, ry, tz, scale };
   }, []);
 
-  const transformForScreenX = useCallback((screenX: number): { transform: string, z: number } => {
-    const { ry, tz, scale } = computeTransformComponents(screenX);
-    return {
-      transform: `translate3d(${screenX}px,-50%,${tz}px) rotateY(${ry}deg) scale(${scale})`,
+  // Inside ScrollEffect.tsx
+const transformForScreenX = useCallback((screenX: number): { transform: string, z: number } => {
+  const { ry, tz, scale } = computeTransformComponents(screenX);
+  
+  // CRITICAL FIX: Calculate half the card width offset.
+  const offsetX = layoutRef.current.CARD_W * -0.5;
+
+  return {
+      // Apply the card's half-width offset (offsetX) to the calculated screenX position 
+      // for perfect centering.
+      transform: `translate3d(${screenX + offsetX}px, -50%, ${tz}px) rotateY(${ry}deg) scale(${scale})`,
       z: tz,
-    };
-  }, [computeTransformComponents]);
+  };
+}, [computeTransformComponents]);
 
   const updateCarouselTransforms = useCallback(() => {
     const { TRACK } = layoutRef.current;
@@ -740,7 +747,9 @@ export default function InfiniteCarousel(): JSX.Element {
         layoutRef.current.CARD_H = r.height || layoutRef.current.CARD_H;
         layoutRef.current.STEP = layoutRef.current.CARD_W + GAP;
         layoutRef.current.TRACK = itemsRef.current.length * layoutRef.current.STEP;
-        layoutRef.current.VW_HALF = window.innerWidth * 0.5;
+        
+        // CRITICAL FIX: Ensure VW_HALF is always updated from the window size
+        layoutRef.current.VW_HALF = window.innerWidth * 0.5; 
         
         itemsRef.current.forEach((it, i) => { it.x = i * layoutRef.current.STEP; });
 

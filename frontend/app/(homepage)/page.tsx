@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { ContactOverlay } from '@/components/Contact';
 import Link from 'next/link';
 import WhoAreWe from '@/components/WhoAreWe';
+import Footer from '@/components/Footer';
+
+
 
 /**
  * Set the video URL.
@@ -98,20 +101,21 @@ const App: React.FC = () => {
           <main className="mb-10">
             <h2 className="text-5xl font-primary md:text-7xl">Born to Create</h2>
             <p className="mt-4 text-xl font-primary-medium tracking-wide md:text-2xl">
-              Brand.Desgin.Developement
+              Brand.Design.Development
             </p>
             <p className="md:mt-3 max-w-md  font-secondary  text-neutral-300 text-lg md:text-xl">
-              A Bootstrap startup for photograhy Studio Name is the best in the
+              A Bootstrap startup for photography Studio Name is the best in the
               area, cinematic, wedding
             </p>
           </main>
         </div>
       </div>
           <WhoAreWe />
+          <Footer />
 
       {/* Render the Contact Overlay */}
       <ContactOverlay isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
-        <div className='min-h-screen'></div>
+      
     </>
   );
 };
