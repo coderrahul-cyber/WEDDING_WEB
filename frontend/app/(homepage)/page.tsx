@@ -4,7 +4,7 @@ import { ContactOverlay } from '@/components/Contact';
 import Link from 'next/link';
 import WhoAreWe from '@/components/WhoAreWe';
 import Footer from '@/components/Footer';
-
+import Packages from '@/components/Packages';
 
 
 const VIDEO_URL = "/assets/video/web2.mov";
@@ -113,6 +113,7 @@ const App: React.FC = () => {
         </div>
       </div>
           <WhoAreWe />
+          <Packages />
           <Footer />
 
       {/* Render the Contact Overlay */}
