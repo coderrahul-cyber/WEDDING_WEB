@@ -25,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${neuBlack.variable} ${neuMedium.variable} ${neuton.variable}`}>
-      <body className="antialiased">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${neuBlack.variable} ${neuMedium.variable} ${neuton.variable} antialiased`}>
+      <body >
         {children}
       </body>
     </html>

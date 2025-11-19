@@ -12,7 +12,7 @@ import Footer from '@/components/Footer';
  * Since your video is in the /public folder at the root of your frontend project
  * (e.g., /public/bg-video.mp4), you can access it directly with "/bg-video.mp4".
  */
-const VIDEO_URL = "/bg-video.mp4";
+const VIDEO_URL = "/assets/video/new.mp4";
 
 
 
@@ -43,7 +43,7 @@ const App: React.FC = () => {
             loop
             muted // Autoplay in most browsers requires the video to be muted
             playsInline // Important for iOS Safari
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover rotate-180"
           >
             Your browser does not support the video tag.
           </video>

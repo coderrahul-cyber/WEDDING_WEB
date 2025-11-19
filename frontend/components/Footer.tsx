@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between mb-20">
         <div>
           <h2 className="font-primary text-6xl md:text-9xl uppercase leading-none tracking-tighter">
-            Let's <br />
+            Let&lsquo;s <br />
             Work.
           </h2>
         </div>
