@@ -1,8 +1,9 @@
 // app/layout.tsx
+// "use client";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import {  neuBlack, neuMedium, neuton } from "@/public/assets/fonts";
+import {  neuBlack, neuMedium, neuton, oswald, playfairDisplay } from "@/public/assets/fonts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,16 +20,18 @@ export const metadata: Metadata = {
   description: "THE BEST PHOTOGRAPHY STUDIO IN THE AREA",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // await new Promise((r) => setTimeout(r, 5000));
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${neuBlack.variable} ${neuMedium.variable} ${neuton.variable} antialiased`}>
-      <body >
+    <html lang="en" className={`${geistSans.variable} ${oswald.variable} ${geistMono.variable} ${neuBlack.variable} ${neuMedium.variable} ${playfairDisplay.variable} ${neuton.variable} `}>
+      <body className="antialiased" >
         {children}
       </body>
     </html>
   );
+
 }

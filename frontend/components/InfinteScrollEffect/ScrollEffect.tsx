@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback, JSX } from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
 import "./scroll.css"
@@ -62,17 +62,16 @@ interface VisibleCard {
 // ============================================================================
 
 const IMAGES: string[] = [
-  '/assets/img/img01.webp',
-  '/assets/img/img02.webp',
-  '/assets/img/img03.webp',
-  '/assets/img/img04.webp',
-  '/assets/img/img05.webp',
-  '/assets/img/img06.webp',
-  '/assets/img/img07.webp',
-  '/assets/img/img08.webp',
-  '/assets/img/img09.webp',
-  '/assets/img/img10.webp',
-  '/assets/img/img11.jpg',
+  '/assets/img/img1.jpg',
+  '/assets/img/img2.jpg',
+  '/assets/img/img3.jpg',
+  '/assets/img/img4.webp',
+  '/assets/img/img5.jpg',
+  '/assets/img/img6.jpg',
+  '/assets/img/img7.jpg',
+  '/assets/img/img8.jpg',
+  // '/assets/img/img09.webp',
+  // '/assets/img/img10.webp',
   '/assets/img/me.mp4' // Video file
 ];
 
@@ -344,6 +343,7 @@ export default function InfiniteCarousel(): JSX.Element {
       };
 
       const [pr, pg, pb] = avgRGB(pIdx);
+      // eslint-disable-next-line prefer-const
       let [h1, s1] = rgbToHsl(pr, pg, pb);
       s1 = Math.max(0.45, Math.min(1, s1 * 1.15));
       const c1 = hslToRgb(h1, s1, 0.5);
@@ -351,6 +351,7 @@ export default function InfiniteCarousel(): JSX.Element {
       let c2: RGBColor;
       if (sIdx >= 0 && sW >= pW * 0.6) {
         const [sr, sg, sb] = avgRGB(sIdx);
+        // eslint-disable-next-line prefer-const
         let [h2, s2] = rgbToHsl(sr, sg, sb);
         s2 = Math.max(0.45, Math.min(1, s2 * 1.05));
         c2 = hslToRgb(h2, s2, 0.72);

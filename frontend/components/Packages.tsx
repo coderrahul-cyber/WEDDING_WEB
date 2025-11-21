@@ -28,7 +28,7 @@ const Packages = () => {
 
   return (
     // Updated background to Cream (#FDF6E3) and text to Dark Brown (#422006) to match WhoAreWe
-    <section className="w-full bg-bg text-text py-20 md:py-10 border-t-2">
+    <section className="w-full bg-bg text-text py-20 md:py-10 border-t-2   relative z-10  pt-20 pb-40 shadow-2xl ">
       <div className="px-6 md:px-16">
         
         {/* --- HEADER SECTION --- */}

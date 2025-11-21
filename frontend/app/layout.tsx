@@ -1,18 +1,11 @@
 // app/layout.tsx
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+
+import SmoothScrolling from "@/components/smoothScroller";
 import "./globals.css";
-import {  neuBlack, neuMedium, neuton } from "@/public/assets/fonts";
+import {  geistMono, geistSans, neuBlack, neuMedium, neuton, oswald, playfairDisplay } from "@/public/assets/fonts";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+
 
 export default function RootLayout({
   children,
@@ -20,9 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${neuBlack.variable} ${neuMedium.variable} ${neuton.variable}`}>
-      <body className="antialiased">
+    <html lang="en" className={`${geistSans.variable} ${oswald.variable} ${geistMono.variable} ${neuBlack.variable} ${neuMedium.variable} ${playfairDisplay.variable} ${neuton.variable} `}>
+      <body className="antialiased" >
+        <SmoothScrolling>
         {children}
+        </SmoothScrolling>
       </body>
     </html>
   );

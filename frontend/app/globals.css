@@ -11,7 +11,9 @@
   --color-foreground: var(--foreground);
   --font-mono: var(--font-geist-mono);
   --font-primary: var(--font-neu);
+  --font-primary-new: var(--font-playfair-display);
   --font-secondary: var(--font-neuton);
+  --font-oswald: var(--font-oswald);
   --font-primary-medium: var(--font-neu-medium);
   --color-bg:#FDF6E3;
   --color-text:#422006;
