@@ -45,7 +45,7 @@ const Packages = () => {
         <div className="flex flex-col">
           {packages.map((pkg) => (
             // Changed border color to a subtle brown opacity to match text
-            <div key={pkg.id} className="group border-t border-[#422006]/20 py-16 md:py-24">
+            <div key={pkg.id} className="group border-t border-text/20 py-16 md:py-24">
               <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
                 
                 {/* Column 1: Title */}
@@ -61,13 +61,13 @@ const Packages = () => {
                     {pkg.subtitle}
                   </h4>
                   {/* Updated text color to be slightly lighter brown for contrast */}
-                  <p className="font-secondary text-lg md:text-xl leading-relaxed text-[#422006]/80 max-w-sm">
+                  <p className="font-secondary text-lg md:text-xl leading-relaxed text-text/80 max-w-sm">
                     {pkg.description}
                   </p>
                 </div>
 
                 {/* Column 3: Image */}
-                <div className="md:col-span-4 relative aspect-[4/3] w-full overflow-hidden bg-[#422006]/10">
+                <div className="md:col-span-4 relative aspect-4/3 w-full overflow-hidden bg-text/10">
                   {/* Placeholder Image Logic */}
                   <Image 
                     src={pkg.image} 
@@ -77,7 +77,7 @@ const Packages = () => {
                   />
                   
                   {/* "View Project" Button Overlay - Updated to Brown Theme */}
-                  <div className="absolute bottom-0 left-0 bg-[#422006] px-4 py-2 text-xs font-bold text-[#FDF6E3] uppercase tracking-widest">
+                  <div className="absolute bottom-0 left-0 bg-text px-4 py-2 text-xs font-bold text-bg uppercase tracking-widest">
                     View Details ↗
                   </div>
                 </div>
@@ -88,7 +88,7 @@ const Packages = () => {
         </div>
 
         {/* Bottom Border - Updated color */}
-        <div className="border-t border-[#422006]/20"></div>
+        <div className="border-t border-text/20"></div>
 
       </div>
     </section>

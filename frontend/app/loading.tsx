@@ -148,7 +148,7 @@ export default function Loading() {
   return (
     <div
       ref={container}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black"
+      className="fixed inset-0 z-9999 flex items-center justify-center bg-black"
       aria-hidden
     >
       {/* SHUTTERS: full-screen bars for cinematic split */}

@@ -30,7 +30,7 @@ const Footer = () => {
       </div>
 
       {/* Divider */}
-      <div className="h-[1px] w-full bg-neutral-800 mb-10"></div>
+      <div className="h-px w-full bg-neutral-800 mb-10"></div>
 
       {/* Bottom Links Section */}
       <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-0 text-sm font-mono text-neutral-400">

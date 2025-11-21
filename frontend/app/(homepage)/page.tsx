@@ -1,8 +1,7 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react';
+import React, {  useRef, useState } from 'react';
 import { ContactOverlay } from '@/components/Contact';
 import Link from 'next/link';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -10,10 +9,8 @@ import { useGSAP } from '@gsap/react';
 import WhoAreWe from '@/components/WhoAreWe';
 import Footer from '@/components/Footer';
 import Packages from '@/components/Packages';
-import Detail from '@/components/Detail';
 import StickyRevealPage from '@/components/Detail';
-import PreLoader from '@/app/loading';
-import IntroOverlay from '@/app/loading';
+
 
 const VIDEO_URL = "/assets/video/web2.mov";
 
