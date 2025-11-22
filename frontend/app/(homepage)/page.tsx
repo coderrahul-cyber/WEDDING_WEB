@@ -6,10 +6,10 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 
-import WhoAreWe from '@/components/WhoAreWe';
-import Footer from '@/components/Footer';
+import WhoAreWe from '@/sections/WhoAreWe';
+import Footer from '@/sections/Footer';
 import Packages from '@/components/Packages';
-import StickyRevealPage from '@/components/Detail';
+import StickyRevealPage from '@/sections/Detail';
 
 
 const VIDEO_URL = "/assets/video/web2.mov";

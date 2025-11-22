@@ -1,6 +1,6 @@
 // app/layout.tsx
 
-import SmoothScrolling from "@/components/smoothScroller";
+import SmoothScrolling from "@/sections/smoothScroller";
 import "./globals.css";
 import {  geistMono, geistSans, neuBlack, neuMedium, neuton, oswald, playfairDisplay } from "@/public/assets/fonts";
 
